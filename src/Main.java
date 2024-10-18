@@ -13,22 +13,10 @@ public class Main {
         List<String> fileNames;
         fileNames = openZip("C:/Users/tepla/Games/savegames/Zip_saved.zip",
                 "C:/Users/tepla/Games/savegames/");
-        System.out.println(fileNames);
-//        for (String file:fileNames){
-//            GameProgress gp=openProgress(file);
-//            //System.out.println(gp.toString());
-//        }
-        GameProgress gp1= null;
-        try(FileInputStream fis = new FileInputStream(fileNames.get(0));
-            ObjectInputStream ois = new ObjectInputStream(fis)){
-            gp1 = (GameProgress) ois.readObject();
-            //return gp;
-        } catch (Exception ex){
-            System.out.println(ex.getMessage());
+        for (String file:fileNames){
+            GameProgress gp=openProgress(file);
+            System.out.println(gp.toString());
         }
-
-        System.out.println(gp1);
-
     }
 
     public static GameProgress openProgress(String fullName){
@@ -36,7 +24,7 @@ public class Main {
         try(FileInputStream fis = new FileInputStream(fullName);
             ObjectInputStream ois = new ObjectInputStream(fis)){
             gp = (GameProgress) ois.readObject();
-            //return gp;
+            return gp;
         } catch (Exception ex){
             System.out.println(ex.getMessage());
         }
